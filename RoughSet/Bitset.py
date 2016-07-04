@@ -31,19 +31,19 @@ class Bitset(list):
 
     def pop(self, index):
         if 0 <= index < len(self.__array):
-            print self.__array.pop(index)
+            print(self.__array.pop(index))
         else:
             raise IndexError(index)
 
     def index(self, elem):
         if elem == 0 or elem == 1:
-            print self.__array.index(elem)
+            print(self.__array.index(elem))
         else:
             raise ValueError(elem)
 
     def count(self, elem):
         if elem == 0 or elem == 1:
-            print self.__array.count(elem)
+            print(self.__array.count(elem))
         else:
             raise ValueError(elem)
 
