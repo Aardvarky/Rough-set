@@ -1,14 +1,37 @@
 class Bitset(list):
     def __init__(self, MAX_ATTR_NUMB=0):
-        self.__array = [1 for _ in range(MAX_ATTR_NUMB)]
+        self.__array = [0 for _ in range(MAX_ATTR_NUMB)]
 
     def append(self, elem):
+        binaryValue = elem
+        if binaryValue == 0 or binaryValue == 1:
+            self.__array.append(binaryValue)
+        else:
+            raise ValueError(elem)
+
+    def appendInt(self, elem):
         if elem == 0 or elem == 1:
             self.__array.append(elem)
         else:
             raise ValueError(elem)
 
-    def set(self, index, elem):
+    def appendString(self, elem):
+        if len(elem) == 1:
+            binaryValue = int(elem)
+            if binaryValue == 0 or binaryValue == 1:
+                self.__array.append(binaryValue)
+            else:
+                raise ValueError(binaryValue)
+        else:
+            raise IndexError(elem)
+
+    def setValue(self, index):
+        if 0 <= index < len(self.__array):
+            self.__array[len(self.__array) - index - 1] = 1
+        else:
+            IndexError(index)
+
+    def setValueAtIndex(self, index, elem):
         if elem == 0 or elem == 1:
             if 0 <= index < len(self.__array):
                 self.__array[len(self.__array) - index - 1] = elem
@@ -17,33 +40,31 @@ class Bitset(list):
         else:
             raise ValueError(elem)
 
+    def setAll(self):
+        for i in range(len(self.__array)):
+            self.__array[i] = 1
+
     def setValue(self, index):
         if 0 <= index < len(self.__array):
             self.__array[len(self.__array) - index - 1] = 1
         else:
             raise IndexError(index)
 
-    def remove(self, elem):
-        if elem == 0 or elem == 1:
-            self.__array.remove(elem)
-        else:
-            raise ValueError(elem)
-
-    def pop(self, index):
+    def remove(self, index):
         if 0 <= index < len(self.__array):
-            print(self.__array.pop(index))
+            del self.__array[index]
         else:
             raise IndexError(index)
 
-    def index(self, elem):
-        if elem == 0 or elem == 1:
-            print(self.__array.index(elem))
+    def pop(self, index):
+        if 0 <= index < len(self.__array):
+            return self.__array.pop(index)
         else:
-            raise ValueError(elem)
+            raise IndexError(index)
 
     def count(self, elem):
         if elem == 0 or elem == 1:
-            print(self.__array.count(elem))
+            return self.__array.count(elem)
         else:
             raise ValueError(elem)
 
@@ -65,8 +86,44 @@ class Bitset(list):
     def size(self):
         return len(self.__array)
 
-    def getArray(self):
-        return self.__array
+    def test(self, index):
+        if 0 <= index < len(self.__array):
+            if self.__array[index] == 0:
+                return False
+            else:
+                return True
+        else:
+            raise IndexError(index)
+
+    def any(self):
+        if 1 in self.__array:
+            return True
+        else:
+            return False
+
+    def none(self):
+        if not 1 in self.__array:
+            return True
+        else:
+            return False
+
+    def all(self):
+        if not 0 in self.__array:
+            return True
+        else:
+            return False
 
     def getBitsetArray(self):
+        return self.__array
+
+    def getElement(self, index):
+        if 0 <= index < len(self.__array):
+            return self.__array[index]
+        else:
+            raise IndexError(index)
+
+    def toString(self):
         return "".join(map(str, self.__array))
+
+    def toInt(self):
+        return int(self.toString(), 2)
