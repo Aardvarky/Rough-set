@@ -113,8 +113,11 @@ class Bitset(list):
         else:
             return False
 
-    def getBitsetArray(self):
+    def getBitsetList(self):
         return self._array
+
+    def setBitsetList(self, binaryList):
+        self._array = binaryList
 
     def getElement(self, index):
         if 0 <= index < len(self._array):
