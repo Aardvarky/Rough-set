@@ -11,3 +11,7 @@ class CDiscernMatrix:
 
     def getTab(self):
         return self.__tab
+
+    def printTab(self):
+        for row in self.__tab:
+            print(row)

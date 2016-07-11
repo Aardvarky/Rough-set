@@ -14,18 +14,19 @@ class BasicInformSystem:
 
         self._systemName = ""
         self._systemType = ""
+        self._attributeNumber = 0
         self._attributeNames = []
+        self._attributeIndexes = dict
         self._attributeTypes = []
+        self._attributeCosts = []
+        self._attributeValues = dict
         self._objectNumber = 0
-
-    def __del__(self):
-        pass
-
-    def setName(self, name):
-        self._systemName = name
 
     def getName(self):
         return self._systemName
+
+    def setName(self, name):
+        self._systemName = name
 
     def getSystemType(self):
         return self._systemType
@@ -33,32 +34,60 @@ class BasicInformSystem:
     def setSystemType(self, type):
         self._systemType = type
 
-    def getAttrNames(self):
+    def getAttributeNumber(self):
+        return self._attributeNumber
+
+    def setAttributeNumber(self, attributeNumber):
+        self._attributeNumber = attributeNumber
+
+    def getAttributeNames(self):
         return self._attributeNames
 
-    def setAttrNames(self, attrNames):
-        self._attributeNames = attrNames
+    def setAttributeNames(self, attributeNames):
+        self._attributeNames = attributeNames
 
-    def getAttrTypes(self):
+    def getAttributeTypes(self):
         return self._attributeTypes
 
-    def setAttrTypes(self, attrTypes):
-        self._attributeTypes = attrTypes
+    def setAttributeTypes(self, attributeTypes):
+        self._attributeTypes = attributeTypes
 
-    def getAttrName(self, index):
+    def getAttributeName(self, index):
         if 0 <= index < len(self._attributeNames):
             return self._attributeNames[index]
         else:
             return ""
 
-    def getAttrType(self, index):
+    def setAttributeName(self, index, stringValue):
+        if 0 <= index < len(self._attributeNames):
+            if type(stringValue) == str:
+                self._attributeNames[index] = stringValue
+            else:
+                raise ValueError(stringValue)
+        else:
+            raise IndexError(index)
+
+    def getAttributeType(self, index):
         if 0 <= index < len(self._attributeTypes):
             return self._attributeTypes[index]
         else:
             return ""
 
+    def setAttributeType(self, index, stringValue):
+        if 0 <= index < len(self._attributeNames):
+            if type(stringValue) == str:
+                self._attributeTypes[index] = stringValue
+            else:
+                raise ValueError(stringValue)
+        else:
+            raise IndexError(index)
+
     def getObjectNumber(self):
         return self._objectNumber
 
     def getObject(self, index):
-        return self._objects.getObject(index)
+        """ Repair this method! """
+        return self._objects[index].getObject()
+
+    def getInInformationTable(self):
+        return self._objects

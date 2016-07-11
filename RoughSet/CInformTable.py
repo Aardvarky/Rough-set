@@ -3,10 +3,7 @@ class CInformTable:
     def __init__(self):
         pass
 
-    def __del__(self):
-        pass
-
-    def getObject(self, index):
+    def getObject(self):
         pass
 
     def removeIdentObjects(self):
