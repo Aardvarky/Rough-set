@@ -1,17 +1,17 @@
 class Bitset(list):
-    def __init__(self, MAX_ATTR_NUMB=0):
-        self._array = [0 for _ in range(MAX_ATTR_NUMB)]
+    def __init__(self, MAX_ATTRIBUTE_NUMBER=0):
+        self._array = [0 for _ in range(MAX_ATTRIBUTE_NUMBER)]
 
     def append(self, elem):
         binaryValue = elem
         if binaryValue == 0 or binaryValue == 1:
-            self._array.append(binaryValue)
+            self._array.insert(0, binaryValue)
         else:
             raise ValueError(elem)
 
     def appendInt(self, elem):
         if elem == 0 or elem == 1:
-            self._array.append(elem)
+            self._array.insert(0, elem)
         else:
             raise ValueError(elem)
 
@@ -19,7 +19,7 @@ class Bitset(list):
         if len(elem) == 1:
             binaryValue = int(elem)
             if binaryValue == 0 or binaryValue == 1:
-                self._array.append(binaryValue)
+                self._array.insert(0, binaryValue)
             else:
                 raise ValueError(binaryValue)
         else:
@@ -29,7 +29,7 @@ class Bitset(list):
         if 0 <= index < len(self._array):
             self._array[len(self._array) - index - 1] = 1
         else:
-            IndexError(index)
+            raise IndexError(index)
 
     def setValueAtIndex(self, index, elem):
         if elem == 0 or elem == 1:
@@ -43,12 +43,6 @@ class Bitset(list):
     def setAll(self):
         for i in range(len(self._array)):
             self._array[i] = 1
-
-    def setValue(self, index):
-        if 0 <= index < len(self._array):
-            self._array[len(self._array) - index - 1] = 1
-        else:
-            raise IndexError(index)
 
     def remove(self, index):
         if 0 <= index < len(self._array):

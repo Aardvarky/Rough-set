@@ -87,7 +87,7 @@ class BasicInformSystem:
 
     def getObject(self, index):
         """ Repair this method! """
-        return self._objects[index].getObject()
+        return self._objects.getObject(index)
 
     def getInInformationTable(self):
         return self._objects
