@@ -8,8 +8,12 @@ class CGlobalState:
 
     def copyInstance(self, instance):
         if isinstance(instance, self.__class__):
-            self._descriptors = copy.deepcopy(instance.getDescriptors())
-            self.setNameObject(instance.getNameObject())
+            copiedInstance = copy.deepcopy(instance)
+
+            self.setName(copiedInstance.getName())
+
+            for key, value in copiedInstance.getDescriptors().items():
+                self._descriptors[key] = value
         else:
             raise ValueError(instance)
 
@@ -68,11 +72,33 @@ class CGlobalState:
 
         return descriptorClassValue == descriptorStateValue
 
-    def operator(self, globState):
-        pass
+    def assignOperator(self, globalState):
+        if isinstance(globalState, self.__class__):
+            copiedInstance = copy.deepcopy(globalState)
+            newGlobalStateInstance = CGlobalState()
 
-    def operator1(self, globState):
-        pass
+            for key, value in copiedInstance.getDescriptors().items():
+                self._descriptors[key] = value
+
+            self.setName(copiedInstance.getName())
+
+            newGlobalStateInstance.setDescriptors(self._descriptors)
+            newGlobalStateInstance.setName(self._name)
+
+            return newGlobalStateInstance
+        else:
+            return None
+
+    def comparasionOperator(self, globalState):
+        if isinstance(globalState, self.__class__):
+            copiedInstance = copy.deepcopy(globalState)
+
+            classDescriptors = self._descriptors
+            instanceDescriptors = copiedInstance.getDescriptors()
+            for key, keyKey in zip(classDescriptors.keys(), instanceDescriptors.keys()):
+                pass
+        else:
+            raise ValueError(globalState)
 
     def read(self, pObjectNode, attributeNameOfName, attributeTypes, Entr):
         pass
