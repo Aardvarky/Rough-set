@@ -1,5 +1,5 @@
 import copy
-from Bitset import Bitset
+
 
 class CGlobalState:
     def __init__(self):
@@ -57,7 +57,7 @@ class CGlobalState:
         size = attributes.size()
 
         for i in range(size):
-            if attributes.test(i) == True:
+            if attributes.test(i):
                 descriptorClassValue = self.getDescriptors().get(i)
                 descriptorStateValue = state.getDescriptors().get(i)
                 if descriptorClassValue != descriptorStateValue:
@@ -66,7 +66,7 @@ class CGlobalState:
         return identical
 
     def compareUsingAttribute(self, state, attribute):
-        #TODO consult with thesis supervisor
+        # TODO consult with thesis supervisor
         descriptorClassValue = self.getDescriptors().get(attribute)
         descriptorStateValue = state.getDescriptors().get(attribute)
 
@@ -87,16 +87,22 @@ class CGlobalState:
 
             return newGlobalStateInstance
         else:
-            return None
+            raise ValueError(globalState)
 
     def comparasionOperator(self, globalState):
         if isinstance(globalState, self.__class__):
-            copiedInstance = copy.deepcopy(globalState)
 
+            copiedInstance = copy.deepcopy(globalState)
             classDescriptors = self._descriptors
             instanceDescriptors = copiedInstance.getDescriptors()
-            for key, keyKey in zip(classDescriptors.keys(), instanceDescriptors.keys()):
-                pass
+
+            equal = True
+
+            for keyDescriptor, keyInstance in zip(classDescriptors.keys(), instanceDescriptors.keys()):
+                if classDescriptors[keyDescriptor] != instanceDescriptors[keyInstance]:
+                    equal = False
+                    break
+            return equal
         else:
             raise ValueError(globalState)
 
@@ -104,9 +110,6 @@ class CGlobalState:
         pass
 
     def loadFromProject(self):
-        pass
-
-    def loadFromProject2(self):
         pass
 
     def saveToProject(self):
