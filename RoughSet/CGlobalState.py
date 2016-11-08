@@ -3,7 +3,7 @@ import copy
 
 class CGlobalState:
     def __init__(self):
-        self._descriptors = dict
+        self._descriptors = dict()
         self._name = ""
 
     def copyInstance(self, instance):
@@ -14,6 +14,7 @@ class CGlobalState:
 
             for key, value in copiedInstance.getDescriptors().items():
                 self._descriptors[key] = value
+                # setattr(self._descriptors, key, value)
         else:
             raise ValueError(instance)
 
@@ -30,7 +31,7 @@ class CGlobalState:
         return self._descriptors
 
     def setDescriptors(self, descriptors):
-        self._descriptors = copy.deepcopy(descriptors)
+        self._descriptors = descriptors
 
     def getName(self):
         return self._name

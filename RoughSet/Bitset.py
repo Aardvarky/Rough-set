@@ -9,12 +9,6 @@ class Bitset(list):
         else:
             raise ValueError(elem)
 
-    def appendInt(self, elem):
-        if elem == 0 or elem == 1:
-            self._array.insert(0, elem)
-        else:
-            raise ValueError(elem)
-
     def appendString(self, elem):
         if len(elem) == 1:
             binaryValue = int(elem)
