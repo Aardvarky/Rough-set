@@ -47,7 +47,7 @@ class CImplicant(Bitset):
         self.orOperator(instance)
 
     def assignOperator(self, instance):
-        if not self.__eq__(instance):
+        if self.getBitsetList() != instance.getBitsetList():
             self.reset()
             self.orOperator(instance)
         else:

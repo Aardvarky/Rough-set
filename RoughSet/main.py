@@ -29,47 +29,17 @@ bitset.getElement(0) # return element
 bitset.toString() # convert bitset to string representation
 bitset.toInt() # convert to decimal value
 
-
-implicant = CImplicant(4)
-implicant.setValue(0)
-implicant.setValue(2)
-implicant2 = CImplicant(4)
-implicant2.setValue(1)
-implicant2.setValue(3)
-
-implicant3 = CImplicant(4)
-implicant3.copyInstance(implicant)
-print(implicant3.getBitsetList())
-
-implicant.orOperator(implicant2)
-print(implicant.getBitsetList())
-
-implicant.reset()
-implicant.assignOperator(implicant2)
-print(implicant.getBitsetList())
-
-print(implicant.inclusionOperator(implicant3))
-
 state = CGlobalState()
 state.setName("global state 1")
-state.setDescriptors({1: 2.3, 2: 2.4})
+state.setDescriptors({1: 2.3, 2: 2.4, 3: 2.5, 4: 2.6})
 
 state1 = CGlobalState()
 state1.setName("global state 2")
-state1.setDescriptors({1: 2.3, 2: 2.4})
+state1.setDescriptors({1: 2.3, 2: 2.4, 3: 2.5, 4: 2.6})
 
-state2 = CGlobalState()
+bitset.setValue(0)
 
-state2.addDescriptor(3, 2.2)
-print(state2.getDescriptors())
-
-state2.copyInstance(state)
-print(state2.getDescriptors())
-
-print(state.getAttributeValue(1))
-print(state.getDescriptors())
-state.setDescriptors(state2.getDescriptors())
-print(state.getDescriptors())
+print(state.comparasionOperator(state1))
 
 # discernMatrix = CDiscernMatrix(4)
 

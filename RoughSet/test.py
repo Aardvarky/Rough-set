@@ -1,8 +1,24 @@
 from Bitset import Bitset
+from CInformTable import CInformTable
+from CGlobalState import CGlobalState
+lista = [1,2]
+lista1 = [2,2]
 
-bit = Bitset(4)
-bit.setValue(0)
-bit.setValue(2)
-bit2 = Bitset(4)
+inf = CInformTable()
+inf1 = CInformTable()
 
-print([0,0].__eq__([0,1]))
+
+state = CGlobalState()
+state.setName("global state 1")
+state.setDescriptors({1: 2.3, 2: 2.4, 3: 2.5, 4: 2.6})
+
+
+state1 = CGlobalState()
+state1.setName("global state 2")
+state1.setDescriptors({1: 2.4, 2: 2.5, 3: 2.6, 4: 2.7})
+
+inf.append(state)
+inf1.append(state1)
+
+inf.setInformationTable(inf1)
+print(inf.getInformationTable())

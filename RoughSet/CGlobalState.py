@@ -8,13 +8,10 @@ class CGlobalState:
 
     def copyInstance(self, instance):
         if isinstance(instance, self.__class__):
-            copiedInstance = copy.deepcopy(instance)
+            self.setName(instance.getName())
 
-            self.setName(copiedInstance.getName())
-
-            for key, value in copiedInstance.getDescriptors().items():
+            for key, value in instance.getDescriptors().items():
                 self._descriptors[key] = value
-                # setattr(self._descriptors, key, value)
         else:
             raise ValueError(instance)
 
@@ -51,23 +48,23 @@ class CGlobalState:
         return identical
 
     def compareUsingBitset(self, state, attributes):
-        # TODO consult with thesis supervisor
         identical = True
-        state = copy.deepcopy(state)
-        attributes = copy.deepcopy(attributes)
-        size = attributes.size()
 
-        for i in range(size):
-            if attributes.test(i):
-                descriptorClassValue = self.getDescriptors().get(i)
-                descriptorStateValue = state.getDescriptors().get(i)
+        instance = self.getDescriptors()
+        state = state.getDescriptors()
+        attr = attributes.getBitsetList()
+
+        for x, (i, j, k) in enumerate(zip(attr, instance, state)):
+            if attributes.test(x):
+                descriptorClassValue = instance.get(j)
+                descriptorStateValue = state.get(k)
                 if descriptorClassValue != descriptorStateValue:
                     identical = False
                     break
+
         return identical
 
     def compareUsingAttribute(self, state, attribute):
-        # TODO consult with thesis supervisor
         descriptorClassValue = self.getDescriptors().get(attribute)
         descriptorStateValue = state.getDescriptors().get(attribute)
 
@@ -75,13 +72,12 @@ class CGlobalState:
 
     def assignOperator(self, globalState):
         if isinstance(globalState, self.__class__):
-            copiedInstance = copy.deepcopy(globalState)
             newGlobalStateInstance = CGlobalState()
 
-            for key, value in copiedInstance.getDescriptors().items():
+            for key, value in globalState.getDescriptors().items():
                 self._descriptors[key] = value
 
-            self.setName(copiedInstance.getName())
+            self.setName(globalState.getName())
 
             newGlobalStateInstance.setDescriptors(self._descriptors)
             newGlobalStateInstance.setName(self._name)
