@@ -39,6 +39,7 @@ state1.setDescriptors({1: 2.3, 2: 2.4, 3: 2.5, 4: 2.6})
 
 bitset.setValue(0)
 
+
 print(state.comparasionOperator(state1))
 
 # discernMatrix = CDiscernMatrix(4)
