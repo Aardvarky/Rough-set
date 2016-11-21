@@ -58,10 +58,22 @@ class CInformTable(list):
         return self._informationTable
 
     def removeIdentObjects(self):
+        #TODO
         pass
 
-    def checkIndiscern(self):
-        pass
+    def checkIndiscern(self, state, attributes):
+        indiscernStateInd = -1
+
+        if type(state) == int and type(attributes) == list:
+            for i in range(self.size()):
+                if self.getObject(i).compareUsingAttributesList(self.getObject(state), attributes):
+                    indiscernStateInd = i
+                    break
+
+            return indiscernStateInd
+        else:
+            return indiscernStateInd
+
 
     def loadFromProject(self):
         pass

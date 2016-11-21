@@ -3,8 +3,17 @@ import copy
 
 class CGlobalState:
     def __init__(self):
-        self._descriptors = dict()
         self._name = ""
+        self._descriptors = {}
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            if other.getDescriptors() == self.getDescriptors():
+                return True
+            else:
+                return False
+        else:
+            return False
 
     def copyInstance(self, instance):
         if isinstance(instance, self.__class__):
