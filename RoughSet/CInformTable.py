@@ -57,9 +57,14 @@ class CInformTable(list):
     def getInformationTable(self):
         return self._informationTable
 
+    def printSome(self):
+        for i in self._informationTable:
+            print(i.getDescriptors())
+
     def removeIdentObjects(self):
-        #TODO
-        pass
+        x = self.copy()
+        self.clear()
+        self._informationTable = list(set(x))
 
     def checkIndiscern(self, state, attributes):
         indiscernStateInd = -1
@@ -73,7 +78,6 @@ class CInformTable(list):
             return indiscernStateInd
         else:
             return indiscernStateInd
-
 
     def loadFromProject(self):
         pass

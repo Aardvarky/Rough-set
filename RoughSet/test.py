@@ -1,7 +1,7 @@
 from Bitset import Bitset
 from CInformTable import CInformTable
 from CGlobalState import CGlobalState
-from CDiscernMatrix import CDiscernMatrix
+
 lista = [1,2]
 lista1 = [2,2]
 
@@ -36,7 +36,9 @@ inf.append(state2)
 inf.append(state3)
 inf.append(state4)
 
-
-print(inf.getInformationTable())
-print(inf.checkIndiscern(4, [1,2,3,4]))
-print(inf.getInformationTable())
+# print(inf.getInformationTable())
+inf.printSome()
+inf.removeIdentObjects()
+print()
+inf.printSome()
+# print(inf.getInformationTable())
