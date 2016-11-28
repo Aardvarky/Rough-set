@@ -1,26 +1,28 @@
 from Bitset import Bitset
 from CDiscernMatrix import CDiscernMatrix
 from CInformTable import CInformTable
+from HashableDict import HashableDict
 
 
 class BasicInformSystem:
-    _attributes = Bitset()
-    _discernMatrix = CDiscernMatrix()
-    _objects = CInformTable()
-
     def __init__(self):
-        self._attributes.reset()
-        self._discernMatrix = None
-
         self._systemName = ""
         self._systemType = ""
+        self._attributes = Bitset()
         self._attributeNumber = 0
         self._attributeNames = []
-        self._attributeIndexes = dict
+        self._attributeIndexes = HashableDict
         self._attributeTypes = []
         self._attributeCosts = []
-        self._attributeValues = dict
+        self._attributeValues = HashableDict
+
+        self._objects = CInformTable()
         self._objectNumber = 0
+
+        self._discernMatrix = CDiscernMatrix()
+
+        self._attributes.reset()
+        self._discernMatrix = None
 
     def getName(self):
         return self._systemName
@@ -31,14 +33,8 @@ class BasicInformSystem:
     def getSystemType(self):
         return self._systemType
 
-    def setSystemType(self, type):
-        self._systemType = type
-
-    def getAttributeNumber(self):
-        return self._attributeNumber
-
-    def setAttributeNumber(self, attributeNumber):
-        self._attributeNumber = attributeNumber
+    def setSystemType(self, systemType):
+        self._systemType = systemType
 
     def getAttributeNames(self):
         return self._attributeNames
@@ -46,26 +42,11 @@ class BasicInformSystem:
     def setAttributeNames(self, attributeNames):
         self._attributeNames = attributeNames
 
-    def getAttributeTypes(self):
-        return self._attributeTypes
-
-    def setAttributeTypes(self, attributeTypes):
-        self._attributeTypes = attributeTypes
-
     def getAttributeName(self, index):
         if 0 <= index < len(self._attributeNames):
             return self._attributeNames[index]
         else:
             return ""
-
-    def setAttributeName(self, index, stringValue):
-        if 0 <= index < len(self._attributeNames):
-            if type(stringValue) == str:
-                self._attributeNames[index] = stringValue
-            else:
-                raise ValueError(stringValue)
-        else:
-            raise IndexError(index)
 
     def getAttributeType(self, index):
         if 0 <= index < len(self._attributeTypes):
@@ -73,21 +54,26 @@ class BasicInformSystem:
         else:
             return ""
 
-    def setAttributeType(self, index, stringValue):
-        if 0 <= index < len(self._attributeNames):
-            if type(stringValue) == str:
-                self._attributeTypes[index] = stringValue
-            else:
-                raise ValueError(stringValue)
-        else:
-            raise IndexError(index)
-
     def getObjectNumber(self):
         return self._objectNumber
 
-    def getObject(self, index):
-        """ Repair this method! """
-        return self._objects.getObject(index)
+    def setObjectNumber(self, objectNumber):
+        self._objectNumber = objectNumber
 
-    def getInInformationTable(self):
+    def getObject(self, index):
+        if type(index) == int:
+            return self._objects.getObject(index)
+        else:
+            raise TypeError(index)
+
+    def getObjectName(self, index):
+        if index < self._objectNumber:
+            return self._objects.getObject(index).getName()
+        else:
+            return ""
+
+    def getInformTable(self):
         return self._objects
+
+    def setInformTable(self, informTable):
+        self._objects.copyInstance(informTable)

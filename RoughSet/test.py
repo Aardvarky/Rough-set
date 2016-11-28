@@ -1,13 +1,8 @@
-from Bitset import Bitset
 from CInformTable import CInformTable
 from CGlobalState import CGlobalState
-
-lista = [1,2]
-lista1 = [2,2]
+from BasicInformSystem import BasicInformSystem
 
 inf = CInformTable()
-inf1 = CInformTable()
-
 
 state = CGlobalState()
 state.setName("global state 1")
@@ -36,9 +31,6 @@ inf.append(state2)
 inf.append(state3)
 inf.append(state4)
 
-# print(inf.getInformationTable())
-inf.printSome()
 inf.removeIdentObjects()
-print()
-inf.printSome()
-# print(inf.getInformationTable())
+
+basicInformSystem = BasicInformSystem()

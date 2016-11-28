@@ -1,6 +1,7 @@
 import copy
 from HashableDict import HashableDict
 
+
 class CGlobalState:
     def __init__(self):
         self._name = ""
