@@ -2,6 +2,15 @@ class Bitset(list):
     def __init__(self, MAX_ATTRIBUTE_NUMBER=0):
         self._array = [0 for _ in range(MAX_ATTRIBUTE_NUMBER)]
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.getBitsetList() == other.getBitsetList()
+        else:
+            return False
+
+    def __hash__(self):
+        return hash(tuple(self.getBitsetList()))
+
     def append(self, elem):
         binaryValue = elem
         if binaryValue == 0 or binaryValue == 1:

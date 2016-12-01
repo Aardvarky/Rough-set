@@ -1,5 +1,5 @@
 from Bitset import Bitset
-import copy
+
 
 class CImplicant(Bitset):
     """ Constructor """
@@ -8,8 +8,13 @@ class CImplicant(Bitset):
         self.reset()
 
     def __eq__(self, other):
-        """ Equal method """
-        return self.__dict__ == other.__dict__
+        if isinstance(other, self.__class__):
+            return self.getBitsetList() == other.getBitsetList()
+        else:
+            return False
+
+    def __hash__(self):
+        return hash(tuple(self.getBitsetList()))
 
     def orOperator(self, instance):
         """ OR operator """

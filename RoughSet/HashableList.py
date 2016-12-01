@@ -1,10 +1,6 @@
-class HashableDict(dict):
-
-    def add(self, key, value):
-        self[key] = value
-
+class HashableList(list):
     def __key(self):
-        return tuple((k, self[k]) for k in sorted(self))
+        return tuple(k for k in self)
 
     def __hash__(self):
         return hash(self.__key())
