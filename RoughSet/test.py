@@ -12,26 +12,29 @@ consequent.add(1, 1.0)
 consequent.add(2, 2.0)
 consequent.add(3, 3.0)
 
-val = HashableDict()
-val.add(1.0, 1)
-val.add(2.0, 2)
-val.add(3.0, 3)
+consequent1 = HashableDict()
+consequent1.add(1, 1.0)
+consequent1.add(2, 2.0)
+consequent1.add(3, 3.0)
 
-val1 = HashableDict()
-val1.add(1.0, 4)
-val1.add(2.0, 5)
-val1.add(3.0, 6)
+antecedent = HashableDict()
+antecedent.add(1, 1.0)
+antecedent.add(2, 2.0)
+antecedent.add(3, 3.0)
 
-val2 = HashableDict()
-val2.add(1.0, 7)
-val2.add(2.0, 8)
-val2.add(3.0, 9)
-
-disc = HashableDict()
-disc.add(1, val)
-disc.add(2, val1)
-disc.add(3, val2)
+antecedent1 = HashableDict()
+antecedent1.add(1, 1.0)
+antecedent1.add(2, 2.0)
+antecedent1.add(3, 3.0)
 
 cRule = CRule()
 cRule.setConsequent(consequent)
-cRule.computeCoverage(disc)
+cRule.setAntecedent(antecedent)
+
+
+cRule1 = CRule()
+cRule1.setConsequent(consequent1)
+cRule1.setAntecedent(antecedent1)
+
+
+print(cRule.equalOperator(cRule1))

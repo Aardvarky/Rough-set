@@ -17,6 +17,20 @@ class CRule:
         self.__parameters = HashableDict()
         self.__signature = Bitset(64)
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            if len(self.getAntecedent()) == len(other.getAntecedent()) \
+                    and len(self.getConsequent()) == len(other.getConsequent()):
+                if self.getAntecedent().__eq__(other.getAntecedent()) \
+                        and self.getConsequent().__eq__(other.getConsequent()):
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        else:
+            return False
+
     def getAntecedent(self):
         return self.__antecedent
 
@@ -107,6 +121,6 @@ class CRule:
 
     def equalOperator(self, rule):
         if isinstance(rule, self.__class__):
-            pass
+            return self.__eq__(rule)
         else:
             raise TypeError(rule)
