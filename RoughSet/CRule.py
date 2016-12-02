@@ -64,7 +64,7 @@ class CRule:
         return self.__strength
 
     def computeStrength(self, objectNumber):
-        self.__strength = float(self.__support)/float(objectNumber)
+        self.__strength = float(self.__support) / float(objectNumber)
 
     def setCoverage(self, value):
         self.__coverage = value
@@ -72,8 +72,20 @@ class CRule:
     def getCoverage(self):
         return self.__coverage
 
-    def computeCoverage(self):
-        """ TODO """
+    def computeCoverage(self, valuesOfAttr):
+        count = 0
+
+        for key, value in self.__consequent.items():
+            if valuesOfAttr.get(key):
+                valueOfAttribute = valuesOfAttr.get(key)
+                if valueOfAttribute.get(value):
+                    count = valueOfAttribute.get(value)
+                else:
+                    continue
+            else:
+                continue
+
+        self.__coverage = float(self.__support) / float(count)
 
     def getCertainty(self):
         return self.__certainty
@@ -82,8 +94,19 @@ class CRule:
         self.__certainty = float(self.__support) / float(self.__antSupport)
 
     def computeSignature(self):
-        """ TODO """
+        self.__signature.reset()
+
+        for key in self.__antecedent.keys():
+            self.__signature.setValue(key)
+
+        for key in self.__consequent.keys():
+            self.__signature.setValue(key)
 
     def checkAttribute(self, index):
         return self.__signature.test(index)
 
+    def equalOperator(self, rule):
+        if isinstance(rule, self.__class__):
+            pass
+        else:
+            raise TypeError(rule)
