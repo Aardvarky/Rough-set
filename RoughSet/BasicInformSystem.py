@@ -36,6 +36,12 @@ class BasicInformSystem:
     def setSystemType(self, systemType):
         self._systemType = systemType
 
+    def getAttributeNumber(self):
+        return self._attributeNumber
+
+    def setAttributeNumber(self, attributeNumber):
+        self._attributeNumber = attributeNumber
+
     def getAttributeNames(self):
         return self._attributeNames
 
@@ -77,3 +83,7 @@ class BasicInformSystem:
 
     def setInformTable(self, informTable):
         self._objects.copyInstance(informTable)
+
+    def compDiscernMatrix(self):
+        self._discernMatrix = CDiscernMatrix(self._objectNumber)
+        #TODO

@@ -1,43 +1,44 @@
 from CRule import CRule
 from HashableDict import HashableDict
-from random import randint
 from CRuleSet import CRuleSet
+from BasicInformSystem import BasicInformSystem
+import random
 
 consequent = HashableDict()
-consequent.add(randint(0, 100), 1.0)
-consequent.add(randint(0, 100), 2.0)
-consequent.add(randint(0, 100), 3.0)
-consequent.add(randint(0, 100), 4.0)
+consequent.add(1, 1.0)
+consequent.add(2, 2.0)
+consequent.add(3, 3.0)
+consequent.add(4, 4.0)
 
 consequent1 = HashableDict()
-consequent1.add(100, 1.0)
-consequent1.add(200, 2.0)
-consequent1.add(300, 3.0)
-consequent1.add(400, 4.0)
+consequent1.add(1, 1.0)
+consequent1.add(2, 2.0)
+consequent1.add(3, 3.0)
+consequent1.add(4, 4.0)
 
 consequent2 = HashableDict()
-consequent2.add(100, 1.0)
-consequent2.add(200, 2.0)
-consequent2.add(300, 3.0)
-consequent2.add(400, 4.0)
+consequent2.add(1, 1.0)
+consequent2.add(2, 2.0)
+consequent2.add(3, 3.0)
+consequent2.add(4, 4.0)
 
 consequent3 = HashableDict()
-consequent3.add(400, 1.0)
-consequent3.add(500, 2.0)
-consequent3.add(600, 3.0)
-consequent3.add(700, 4.0)
+consequent3.add(4, 4.0)
+consequent3.add(5, 5.0)
+consequent3.add(6, 6.0)
+consequent3.add(7, 7.0)
 
 consequent4 = HashableDict()
-consequent4.add(400, 1.0)
-consequent4.add(500, 2.0)
-consequent4.add(600, 3.0)
-consequent4.add(700, 4.0)
+consequent4.add(4, 4.0)
+consequent4.add(5, 5.0)
+consequent4.add(6, 6.0)
+consequent4.add(7, 7.0)
 
 antecedent = HashableDict()
-antecedent.add(randint(0, 100), 1.0)
-antecedent.add(randint(0, 100), 2.0)
-antecedent.add(randint(0, 100), 3.0)
-antecedent.add(randint(0, 100), 4.0)
+antecedent.add(10, 1.0)
+antecedent.add(20, 2.0)
+antecedent.add(30, 3.0)
+antecedent.add(40, 4.0)
 
 antecedent1 = HashableDict()
 antecedent1.add(10, 1.0)
@@ -90,6 +91,25 @@ cRuleSet.append(cRule2)
 cRuleSet.append(cRule3)
 cRuleSet.append(cRule4)
 
-print(cRuleSet.getRuleArray())
-cRuleSet.removeRules(1)
-print(cRuleSet.getRuleArray())
+cRuleSet1 = CRuleSet()
+
+DictForParameter = dict()
+DictForParameter[1.0] = 1
+DictForParameter[2.0] = 1
+DictForParameter[3.0] = 1
+DictForParameter[4.0] = 1
+
+dictyes = dict()
+dictyes[1] = DictForParameter
+dictyes[2] = DictForParameter
+dictyes[3] = DictForParameter
+dictyes[4] = DictForParameter
+dictyes[5] = DictForParameter
+
+
+cRuleSet1 = cRuleSet.compInhibRules(dictyes, cRuleSet1)
+
+basicInformSystem = BasicInformSystem()
+basicInformSystem.setObjectNumber(2)
+basicInformSystem.setAttributeNumber(2)
+basicInformSystem.compDiscernMatrix()

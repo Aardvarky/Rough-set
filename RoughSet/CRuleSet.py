@@ -21,6 +21,9 @@ class CRuleSet(list):
         else:
             raise TypeError(rule)
 
+    def getRule(self, index):
+        return self.__ruleArray[index]
+
     def getRuleArray(self):
         return self.__ruleArray
 
@@ -86,4 +89,26 @@ class CRuleSet(list):
             i.computeSignature()
 
     def compInhibRules(self, attrValues, inhibRules):
-        pass
+        inhb = 0
+
+        for x in range(len(self.__ruleArray)):
+            for n, m in self.__ruleArray[x].getConsequent().items():
+                key = n
+                value = m
+
+                for k, v in attrValues.items():
+                    if k == key:
+                        for i, j in v.items():
+                            if value != i:
+                                inhibRules.append(CRule())
+
+                                for k, v in self.__ruleArray[x].getAntecedent().items():
+                                    inhibRules.getRule(inhb).getAntecedent().add(k, v)
+
+                                inhibRules.getRule(inhb).getConsequent().add(key, i)
+                                inhibRules.getRule(inhb).setCoverage(self.__ruleArray[x].getCoverage())
+                                inhibRules.getRule(inhb).setStrength(self.__ruleArray[x].getStrength())
+                                inhibRules.getRule(inhb).setSupport(self.__ruleArray[x].getSupport())
+                                inhb += 1
+
+        return inhibRules
