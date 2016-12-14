@@ -54,11 +54,17 @@ class BasicInformSystem:
         else:
             return ""
 
+    def setAttributeIndexes(self, attributeIndexes):
+        self._attributeIndexes = attributeIndexes
+
     def getAttributeType(self, index):
         if 0 <= index < len(self._attributeTypes):
             return self._attributeTypes[index]
         else:
             return ""
+
+    def getAttributeTypes(self):
+        return self._attributeTypes
 
     def getObjectNumber(self):
         return self._objectNumber
@@ -86,4 +92,15 @@ class BasicInformSystem:
 
     def compDiscernMatrix(self):
         self._discernMatrix = CDiscernMatrix(self._objectNumber)
-        #TODO
+
+        self._objectNumber = self._objects.size()
+
+        for i in range(self._objectNumber):
+            for j in range(self._objectNumber):
+                for k in range(self._attributeNumber):
+                    x = self.getObject(i).getDescriptors().get(k)
+                    y = self.getObject(j).getDescriptors().get(k)
+
+                    if x != y:
+                        # FIX IT
+                        self._discernMatrix.getImplicant(i, j).setValue(k)
