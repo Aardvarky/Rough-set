@@ -3,8 +3,8 @@ from CImplicant import CImplicant
 
 class CDiscernMatrix:
 
-    def __init__(self, dimension=0):
-        self.__matrix = [[CImplicant() for i in range(dimension)] for j in range(dimension)]
+    def __init__(self, dimension=0, attributeNumer=0):
+        self.__matrix = [[CImplicant(attributeNumer) for i in range(dimension)] for j in range(dimension)]
 
     def saveXML(self, pDoc, pDiscMatrNode, objects, attributeNames):
         pass
@@ -20,4 +20,6 @@ class CDiscernMatrix:
 
     def printTab(self):
         for row in self.__matrix:
-            print(row)
+            for cell in row:
+                print(repr(cell.getBitsetList()).rjust(3), end=' ')
+            print()

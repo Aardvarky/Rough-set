@@ -79,4 +79,4 @@ basicInformSystem.setAttributeNames(["firstProduct",
 
 basicInformSystem.setAttributeIndexes(indexesAttributeMap)
 basicInformSystem.setInformTable(informTable)
-basicInformSystem.compDiscernMatrix() #TODO
+basicInformSystem.compDiscernMatrix()

@@ -91,9 +91,8 @@ class BasicInformSystem:
         self._objects.copyInstance(informTable)
 
     def compDiscernMatrix(self):
-        self._discernMatrix = CDiscernMatrix(self._objectNumber)
-
         self._objectNumber = self._objects.size()
+        self._discernMatrix = CDiscernMatrix(self._objectNumber, self._attributeNumber)
 
         for i in range(self._objectNumber):
             for j in range(self._objectNumber):
@@ -102,5 +101,4 @@ class BasicInformSystem:
                     y = self.getObject(j).getDescriptors().get(k)
 
                     if x != y:
-                        # FIX IT
                         self._discernMatrix.getImplicant(i, j).setValue(k)
