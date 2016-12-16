@@ -80,3 +80,6 @@ basicInformSystem.setAttributeNames(["firstProduct",
 basicInformSystem.setAttributeIndexes(indexesAttributeMap)
 basicInformSystem.setInformTable(informTable)
 basicInformSystem.compDiscernMatrix()
+basicInformSystem.compNondetRules([0, 1, 2, 3], 3)
+basicInformSystem.compDependDegreeForAttribute([0, 1, 2, 3], 3)
+basicInformSystem.compDependDegreeForAttributes([0, 1, 2, 3], [0, 1, 2, 3])

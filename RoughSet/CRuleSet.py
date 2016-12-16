@@ -21,6 +21,12 @@ class CRuleSet(list):
         else:
             raise TypeError(rule)
 
+    def appendRuleSet(self, ruleSet):
+        if isinstance(ruleSet, self.__class__):
+            self.__ruleArray.append(ruleSet.getRuleArray())
+        else:
+            raise TypeError(ruleSet)
+
     def getRule(self, index):
         return self.__ruleArray[index]
 
@@ -67,6 +73,10 @@ class CRuleSet(list):
             self.setRuleArray(newListOfRules)
         else:
             raise TypeError(minStrength)
+
+    def removeAll(self):
+        for i in self.__ruleArray:
+            del i
 
     def computeCosts(self, costArray):
         for i in self.__ruleArray:
