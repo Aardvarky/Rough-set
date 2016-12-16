@@ -64,6 +64,9 @@ class CImplArray(list):
     def size(self):
         return len(self._implicantArray)
 
+    def getImplicant(self, index):
+        return self._implicantArray[index]
+
     def getImplicantArray(self):
         return self._implicantArray
 

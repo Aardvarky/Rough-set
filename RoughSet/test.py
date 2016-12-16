@@ -4,6 +4,7 @@ from CRuleSet import CRuleSet
 from CGlobalState import CGlobalState
 from BasicInformSystem import BasicInformSystem
 from CInformTable import CInformTable
+from CReduct import CReduct
 
 indexesAttributeMap = HashableDict()
 indexesAttributeMap.add("firstProduct", 0)
