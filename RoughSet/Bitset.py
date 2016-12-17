@@ -34,6 +34,14 @@ class Bitset(list):
         else:
             raise IndexError(index)
 
+    def orOperat(self, instance):
+        classBitset = self.getBitsetList()[::-1]
+        instanceBitset = instance.getBitsetList()[::-1]
+
+        for x, (i, j) in enumerate(zip(classBitset, instanceBitset)):
+            value = i | j
+            self.setValueAtIndex(x, value)
+
     def setValueAtIndex(self, index, elem):
         if elem == 0 or elem == 1:
             if 0 <= index < len(self._array):

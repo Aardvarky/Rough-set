@@ -1,6 +1,7 @@
 from CImplArray import CImplArray
 from CReduct import CReduct
 
+
 class CReductSet:
     def __init__(self):
         self.__reductArray = []
@@ -11,17 +12,26 @@ class CReductSet:
         else:
             raise TypeError(reduct)
 
+    def insert(self, index, reduct):
+        if isinstance(reduct, CReduct):
+            self.__reductArray.insert(index, reduct)
+        else:
+            raise TypeError(reduct)
+
     def getReduct(self, index):
         return self.__reductArray[index]
+
+    def getReducts(self):
+        return self.__reductArray
 
     def write(self, implArr, reductSize):
         if isinstance(implArr, CImplArray):
             for i in range(implArr.size()):
-                self.append(CReduct(reductSize))
+                self.insert(i, CReduct(reductSize))
                 self.getReduct(i).setName(i+1)
-                #TODO
-            else:
-                raise TypeError(implArr)
+                self.getReduct(i).getAttributes().orOperat(implArr.getImplicant(i))
+        else:
+            raise TypeError(implArr)
 
     def saveXML(self, File, ISName, NameAttr):
         pass

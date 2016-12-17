@@ -5,6 +5,9 @@ from CGlobalState import CGlobalState
 from BasicInformSystem import BasicInformSystem
 from CInformTable import CInformTable
 from CReduct import CReduct
+from CReductSet import CReductSet
+from CImplicant import CImplicant
+from CImplArray import CImplArray
 
 indexesAttributeMap = HashableDict()
 indexesAttributeMap.add("firstProduct", 0)
