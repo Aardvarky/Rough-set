@@ -1,3 +1,4 @@
+import copy
 from CImplicant import CImplicant
 
 
@@ -70,11 +71,28 @@ class CImplArray(list):
     def getImplicantArray(self):
         return self._implicantArray
 
-    def sort(self, cmp=None, key=None, reverse=False):
-        pass
+    def sort(self):
+        for i in range(len(self._implicantArray) - 1):
+            minimum = i
+            for j in range(i + 1, len(self._implicantArray)):
+                if self.getImplicant(j).count(1) < self.getImplicant(minimum).count(1):
+                    minimum = j
+
+            implicant = copy.deepcopy(self.getImplicant(i))
+            self.getImplicant(i).assignOperator(self.getImplicant(minimum))
+            self.getImplicant(minimum).assignOperator(implicant)
 
     def minimalize(self):
-        pass
+        i = 0
+
+        while i < len(self._implicantArray):
+            j = i + 1
+            while j < len(self._implicantArray):
+                if self.getImplicant(i).inclusionOperator(self.getImplicant(j)):
+                    self.remove(self.getImplicant(j))
+                    j -= 1
+                j += 1
+            i += 1
 
     def conj2disj(self):
         pass
@@ -88,5 +106,21 @@ class CImplArray(list):
         else:
             return self
 
-    def cartesianOperator(self, cImplicant):
-        pass
+    def cartesianOperator(self, implicant):
+        implicantIndex = 0
+        implicantArray = CImplArray()
+
+        for i in range(len(self.getImplicantArray())):
+            for j in range(implicant.size()):
+                if implicant.test(j):
+                    implicantSize = self.getImplicant(i).size()
+
+                    implicantArray.insert(implicantIndex, CImplicant(implicantSize))
+                    implicantArray.getImplicant(implicantIndex).assignOperator(self.getImplicant(i))
+                    implicantArray.getImplicant(implicantIndex).setValue(j)
+                    implicantIndex += 1
+
+        implicantArray.sort()
+        implicantArray.minimalize()
+
+        return implicantArray

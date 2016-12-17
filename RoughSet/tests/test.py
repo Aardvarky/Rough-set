@@ -1,11 +1,7 @@
-from CRule import CRule
 from HashableDict import HashableDict
-from CRuleSet import CRuleSet
 from CGlobalState import CGlobalState
 from BasicInformSystem import BasicInformSystem
 from CInformTable import CInformTable
-from CReduct import CReduct
-from CReductSet import CReductSet
 from CImplicant import CImplicant
 from CImplArray import CImplArray
 
@@ -87,3 +83,11 @@ basicInformSystem.compDiscernMatrix()
 basicInformSystem.compNondetRules([0, 1, 2, 3], 3)
 basicInformSystem.compDependDegreeForAttribute([0, 1, 2, 3], 3)
 basicInformSystem.compDependDegreeForAttributes([0, 1, 2, 3], [0, 1, 2, 3])
+
+cImplicant = CImplicant(4)
+cImplArray = CImplArray()
+cImplArray.append(cImplicant)
+cImplArray.append(cImplicant)
+cImplArray.append(cImplicant)
+cImplArray.append(cImplicant)
+cImplArray.sort()

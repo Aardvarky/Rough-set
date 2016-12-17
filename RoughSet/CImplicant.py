@@ -16,6 +16,18 @@ class CImplicant(Bitset):
     def __hash__(self):
         return hash(tuple(self.getBitsetList()))
 
+    def getBitsetList(self):
+        return super().getBitsetList()
+
+    def count(self, elem):
+        return super().count(elem)
+
+    def size(self):
+        return super().size()
+
+    def setValue(self, index):
+        return super().setValue(index)
+
     def orOperator(self, instance):
         """ OR operator """
         if isinstance(instance, self.__class__):
