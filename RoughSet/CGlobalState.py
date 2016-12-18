@@ -5,7 +5,7 @@ from HashableDict import HashableDict
 class CGlobalState:
     def __init__(self):
         self._name = ""
-        self._descriptors = HashableDict
+        self._descriptors = HashableDict()
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):

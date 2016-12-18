@@ -31,6 +31,54 @@ class CImplicant(Bitset):
     def setValue(self, index):
         return super().setValue(index)
 
+    def pop(self, index):
+        return super().pop(index)
+
+    def appendString(self, elem):
+        return super().appendString(elem)
+
+    def none(self):
+        return super().none()
+
+    def flip(self):
+        super().flip()
+
+    def all(self):
+        return super().all()
+
+    def setBitsetList(self, binaryList):
+        super().setBitsetList(binaryList)
+
+    def resetBinaryValue(self, index):
+        return super().resetBinaryValue(index)
+
+    def setAll(self):
+        super().setAll()
+
+    def toInt(self):
+        return super().toInt()
+
+    def getElement(self, index):
+        return super().getElement(index)
+
+    def append(self, elem):
+        return super().append(elem)
+
+    def reset(self):
+        super().reset()
+
+    def remove(self, index):
+        return super().remove(index)
+
+    def setValueAtIndex(self, index, elem):
+        return super().setValueAtIndex(index, elem)
+
+    def toString(self):
+        return super().toString()
+
+    def any(self):
+        return super().any()
+
     def orOperator(self, instance):
         """ OR operator """
         if isinstance(instance, self.__class__):
