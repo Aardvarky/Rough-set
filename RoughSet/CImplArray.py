@@ -95,7 +95,22 @@ class CImplArray(list):
             i += 1
 
     def conj2disj(self):
-        pass
+        implicantIndex = 0
+        implicantArray = CImplArray()
+
+        if len(self.getImplicantArray()) > 0:
+            for i in range(self.getImplicant(0).size()):
+                if self.getImplicant(0).test(i):
+                    implicantSize = self.getImplicant(0).size()
+
+                    implicantArray.insert(implicantIndex, CImplicant(implicantSize))
+                    implicantArray.getImplicant(implicantIndex).setValue(i)
+                    implicantIndex += 1
+
+            for i in range(1, len(self.getImplicantArray())):
+                implicantArray.cartesianOperator(self.getImplicant(i))
+
+        return implicantArray
 
     def assignOperator(self, implicantArray):
         if isinstance(implicantArray, self.__class__):

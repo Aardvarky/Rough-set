@@ -22,6 +22,9 @@ class CImplicant(Bitset):
     def count(self, elem):
         return super().count(elem)
 
+    def test(self, index):
+        return super().test(index)
+
     def size(self):
         return super().size()
 

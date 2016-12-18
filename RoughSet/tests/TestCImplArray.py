@@ -53,18 +53,19 @@ second_implicant_array.append(ninth_implicant)
 second_implicant_array.append(tenth_implicant)
 
 # Sorting
-print("---------------------------------------------")
+print("-------------------Sorting-------------------")
 first_implicant_array.sort()
 
 for i in first_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
-second_implicant_array.sort()
 print("---------------------------------------------")
+
+second_implicant_array.sort()
 for i in second_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
-print("---------------------------------------------")
+print("------------------Minimalize-----------------")
 
 # Minimalize
 first_implicant_array.minimalize()
@@ -72,18 +73,22 @@ first_implicant_array.minimalize()
 for i in first_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
+print("---------------------------------------------")
+
 second_implicant_array.minimalize()
 
 for i in second_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
-print("---------------------------------------------")
+print("--------------Cartesian operator-------------")
 
 # Cartesian operator
 third_implicant_array = first_implicant_array.cartesianOperator(eighth_implicant)
 
 for i in third_implicant_array.getImplicantArray():
     print(i.getBitsetList())
+
+print("---------------------------------------------")
 
 fourth_implicant_array = second_implicant_array.cartesianOperator(second_implicant)
 
