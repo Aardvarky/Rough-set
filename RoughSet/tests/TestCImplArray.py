@@ -95,4 +95,32 @@ fourth_implicant_array = second_implicant_array.cartesianOperator(second_implica
 for i in fourth_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
+print("---------------conj2disj---------------------")
+
+first_implicant_array.conj2disj()
+
+for i in first_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
+print("---------------------------------------------")
+
+second_implicant_array.conj2disj()
+
+for i in second_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
+print("---------------------------------------------")
+
+third_implicant_array.conj2disj()
+
+for i in third_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
+print("---------------------------------------------")
+
+fourth_implicant_array.conj2disj()
+
+for i in third_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
 print("---------------------------------------------")

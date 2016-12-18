@@ -24,8 +24,11 @@ class CImplArray(list):
         if isinstance(implicantArray, self.__class__):
             self.clear()
 
-            for i in range(implicantArray.size()):
-                self._implicantArray.append(implicantArray[i])
+            # for i in range(implicantArray.size()):
+            #     self._implicantArray.append(implicantArray[i])
+
+            for i in implicantArray.getImplicantArray():
+                self._implicantArray.append(i)
         else:
             raise TypeError(implicantArray)
 
@@ -108,7 +111,9 @@ class CImplArray(list):
                     implicantIndex += 1
 
             for i in range(1, len(self.getImplicantArray())):
-                implicantArray.cartesianOperator(self.getImplicant(i))
+                implicantArrayCopy = copy.deepcopy(implicantArray)
+                secondImplicantArray = implicantArrayCopy.cartesianOperator(self.getImplicant(i))
+                implicantArray.assignOperator(secondImplicantArray)
 
         return implicantArray
 
