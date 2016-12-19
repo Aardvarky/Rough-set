@@ -11,6 +11,9 @@ class CReduct:
     def setName(self, index):
         self.__name = "R" + str(index)
 
+    def getChoice(self):
+        return self.__choice
+
     def setChoice(self, boolean):
         self.__choice = boolean
 
