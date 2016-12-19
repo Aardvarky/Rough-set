@@ -6,9 +6,6 @@ class CDiscernMatrix:
     def __init__(self, dimension=0, attributeNumer=0):
         self.__matrix = [[CImplicant(attributeNumer) for i in range(dimension)] for j in range(dimension)]
 
-    def saveXML(self, pDoc, pDiscMatrNode, objects, attributeNames):
-        pass
-
     def getMatrix(self):
         return self.__matrix
 
@@ -23,3 +20,6 @@ class CDiscernMatrix:
             for cell in row:
                 print(repr(cell.getBitsetList()).rjust(3), end=' ')
             print()
+
+    def saveXML(self, pDoc, pDiscMatrNode, objects, attributeNames):
+        pass
