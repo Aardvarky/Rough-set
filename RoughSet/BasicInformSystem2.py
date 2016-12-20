@@ -1,10 +1,18 @@
 from BasicInformSystem import BasicInformSystem
+from Bitset import Bitset
+from CReductSet import CReductSet
+
 
 class BasicInformSystem2(BasicInformSystem):
     """ Basic Information System 2"""
 
-    def __init__(self):
+    def __init__(self, MAX_ATTRIBUTE_NUMBER=0):
         super().__init__()
+
+        self._reducts = CReductSet()
+        self._core = Bitset(MAX_ATTRIBUTE_NUMBER)
+
+        self._core.reset()
 
     def setObjectNumber(self, objectNumber):
         super().setObjectNumber(objectNumber)
@@ -71,3 +79,26 @@ class BasicInformSystem2(BasicInformSystem):
 
     def setSystemType(self, systemType):
         super().setSystemType(systemType)
+
+    def computeReducts(self):
+        pass
+
+    def computeReductsUsingAttributes(self):
+        pass
+
+    def saveReducts(self, file):
+        pass
+
+    def chooseAllReducts(self):
+        for i in range(self.getReducts().size()):
+            self.getReduct(i).setChoice(True)
+
+    def chooseReducts(self, reductList):
+        for i in range(len(reductList)):
+            self.getReduct(reductList[i]).setChoice(True)
+
+    def getReducts(self):
+        return self._reducts
+
+    def getReduct(self, index):
+        return self._reducts.getReduct(index)

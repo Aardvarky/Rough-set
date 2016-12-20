@@ -24,6 +24,9 @@ class CReductSet:
     def getReducts(self):
         return self.__reductArray
 
+    def size(self):
+        return len(self.__reductArray)
+
     def write(self, implArr, reductSize):
         if isinstance(implArr, CImplArray):
             for i in range(implArr.size()):
