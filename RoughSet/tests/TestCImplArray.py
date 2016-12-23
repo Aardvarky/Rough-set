@@ -1,3 +1,4 @@
+import copy
 from CImplArray import CImplArray
 from CImplicant import CImplicant
 
@@ -20,11 +21,11 @@ fifth_implicant = CImplicant(4)
 fifth_implicant.reset()
 
 first_implicant_array = CImplArray()
-first_implicant_array.append(first_implicant)
-first_implicant_array.append(second_implicant)
-first_implicant_array.append(third_implicant)
-first_implicant_array.append(fourth_implicant)
-first_implicant_array.append(fifth_implicant)
+first_implicant_array.append(copy.deepcopy(first_implicant))
+first_implicant_array.append(copy.deepcopy(second_implicant))
+first_implicant_array.append(copy.deepcopy(third_implicant))
+first_implicant_array.append(copy.deepcopy(fourth_implicant))
+first_implicant_array.append(copy.deepcopy(fifth_implicant))
 
 sixth_implicant = CImplicant(4)
 sixth_implicant.setValue(0)
@@ -46,11 +47,11 @@ tenth_implicant.setValue(0)
 tenth_implicant.setValue(1)
 
 second_implicant_array = CImplArray()
-second_implicant_array.append(sixth_implicant)
-second_implicant_array.append(seventh_implicant)
-second_implicant_array.append(eighth_implicant)
-second_implicant_array.append(ninth_implicant)
-second_implicant_array.append(tenth_implicant)
+second_implicant_array.append(copy.deepcopy(sixth_implicant))
+second_implicant_array.append(copy.deepcopy(seventh_implicant))
+second_implicant_array.append(copy.deepcopy(eighth_implicant))
+second_implicant_array.append(copy.deepcopy(ninth_implicant))
+second_implicant_array.append(copy.deepcopy(tenth_implicant))
 
 # Sorting
 print("-------------------Sorting-------------------")

@@ -93,7 +93,7 @@ class Bitset(list):
 
     def test(self, index):
         if 0 <= index < len(self._array):
-            if self._array[index] == 0:
+            if self._array[len(self._array) - index - 1] == 0:
                 return False
             else:
                 return True

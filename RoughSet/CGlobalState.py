@@ -63,18 +63,14 @@ class CGlobalState:
     def compareUsingBitset(self, state, attributes):
         identical = True
 
-        instance = self.getDescriptors()
-        state = state.getDescriptors()
-        attr = attributes.getBitsetList()
+        for i in range(attributes.size()):
+            if attributes.test(i):
+                value = self.getDescriptors().get(i)
+                value1 = state.getDescriptors().get(i)
 
-        for x, (i, j, k) in enumerate(zip(attr, instance, state)):
-            if attributes.test(x):
-                descriptorClassValue = instance.get(j)
-                descriptorStateValue = state.get(k)
-                if descriptorClassValue != descriptorStateValue:
+                if value != value1:
                     identical = False
                     break
-
         return identical
 
     def compareUsingAttribute(self, state, attribute):
@@ -85,17 +81,17 @@ class CGlobalState:
 
     def assignOperator(self, globalState):
         if isinstance(globalState, self.__class__):
-            newGlobalStateInstance = CGlobalState()
+            newGlobalState = CGlobalState()
 
             for key, value in globalState.getDescriptors().items():
-                self._descriptors[key] = value
-
+                self._descriptors.add(key, value)
+                # self._descriptors[key] = value
             self.setName(globalState.getName())
 
-            newGlobalStateInstance.setDescriptors(self._descriptors)
-            newGlobalStateInstance.setName(self._name)
+            newGlobalState.setDescriptors(self._descriptors)
+            newGlobalState.setName(self._name)
 
-            return newGlobalStateInstance
+            return newGlobalState
         else:
             raise ValueError(globalState)
 
@@ -109,7 +105,7 @@ class CGlobalState:
             equal = True
 
             for keyDescriptor, keyInstance in zip(classDescriptors.keys(), instanceDescriptors.keys()):
-                if classDescriptors[keyDescriptor] != instanceDescriptors[keyInstance]:
+                if classDescriptors.get(keyDescriptor) != instanceDescriptors.get(keyInstance):
                     equal = False
                     break
             return equal

@@ -55,6 +55,12 @@ class CRule:
         else:
             raise TypeError(name, value)
 
+    def getParameter(self, name):
+        return self.__parameters[name]
+
+    def getParameters(self):
+        return self.__parameters
+
     def computeCost(self, costArray):
         for key in self.__antecedent.keys():
             self.__cost += costArray[key]

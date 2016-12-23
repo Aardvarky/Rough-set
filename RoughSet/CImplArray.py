@@ -82,7 +82,8 @@ class CImplArray(list):
                     minimum = j
 
             implicant = copy.deepcopy(self.getImplicant(i))
-            self.getImplicant(i).assignOperator(self.getImplicant(minimum))
+            implicantMinimum = copy.deepcopy(self.getImplicant(minimum))
+            self.getImplicant(i).assignOperator(implicantMinimum)
             self.getImplicant(minimum).assignOperator(implicant)
 
     def minimalize(self):

@@ -2,33 +2,63 @@ from CGlobalState import CGlobalState
 from HashableDict import HashableDict
 from Bitset import Bitset
 
-fistGlobalState = CGlobalState()
+print("--------------Creating object---------------------")
 
-fistGlobalState.addDescriptor(1, 1.0)
+firstGlobalState = CGlobalState()
+print(firstGlobalState.getDescriptors())
 
-fistGlobalState.getAttributeValue(1)
+print("--------------Add descriptor----------------------")
+
+firstGlobalState.addDescriptor(1, 1.0)
+print(firstGlobalState.getDescriptors())
+
+print("--------------get attribute value-----------------")
+
+print(firstGlobalState.getAttributeValue(1))
+
+print("--------------set and get descriptors-------------")
 
 fistHashableDict = HashableDict()
 fistHashableDict.add(2, 2.0)
 
-fistGlobalState.getDescriptors()
-fistGlobalState.setDescriptors(fistHashableDict)
+firstGlobalState.setDescriptors(fistHashableDict)
 
-fistGlobalState.getName()
-fistGlobalState.setName("Name")
+print(firstGlobalState.getDescriptors())
+
+print("--------------get and set name--------------------")
+
+firstGlobalState.setName("Name")
+
+print(firstGlobalState.getName())
+
+print("--------------creating second global state--------")
 
 secondGlobalState = CGlobalState()
 secondGlobalState.addDescriptor(1, 1.1)
 secondGlobalState.addDescriptor(3, 3.0)
 
-fistGlobalState.compareUsingAttributesList(secondGlobalState, [1, 2])
+print(secondGlobalState.getDescriptors())
+
+print("--------------comparing using attribute list------")
+
+print(firstGlobalState.compareUsingAttributesList(secondGlobalState, [1, 2]))
 
 fistBitset = Bitset(2)
 fistBitset.setAll()
 
-fistGlobalState.compareUsingBitset(secondGlobalState, fistBitset)
-fistGlobalState.compareUsingAttribute(secondGlobalState, 1)
+print("--------------comparing using bitset--------------")
 
-fistGlobalState.assignOperator(secondGlobalState)
+print(firstGlobalState.compareUsingBitset(secondGlobalState, fistBitset))
 
-fistGlobalState.comparasionOperator(secondGlobalState)
+print("--------------comparing using attribute-----------")
+
+print(firstGlobalState.compareUsingAttribute(secondGlobalState, 1))
+
+print("--------------assign operator---------------------")
+
+thirdGlobalState = firstGlobalState.assignOperator(secondGlobalState)
+print(thirdGlobalState.getDescriptors())
+
+print("--------------comparison operator----------------")
+
+print(firstGlobalState.comparasionOperator(secondGlobalState))

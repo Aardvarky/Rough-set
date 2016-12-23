@@ -1,16 +1,35 @@
 from CReduct import CReduct
 
 
+print("--------------Creating first reduct-------------")
+
 firstCReduct = CReduct(4)
+
+print(firstCReduct.getAttributes().getBitsetList())
+
+print("--------------Creating second reduct------------")
 secondCReduct = CReduct(4)
 
-firstCReduct.getChoice()
+print(secondCReduct.getAttributes().getBitsetList())
+
+print("--------------get and set choice----------------")
+
 firstCReduct.setChoice(False)
-firstCReduct.isChosen()
+print(firstCReduct.getChoice())
 
-firstCReduct.getName()
+print("--------------is chosen-------------------------")
+
+print(firstCReduct.isChosen())
+
+print("--------------set and get-----------------------")
+
 firstCReduct.setName(1)
+print(firstCReduct.getName())
 
-firstCReduct.getAttributes()
+print("--------------get attributes--------------------")
 
-firstCReduct.getAttributesAsInt()
+print(firstCReduct.getAttributes().getBitsetList())
+
+print("--------------get attributes to int-------------")
+
+print(firstCReduct.getAttributesAsInt())
