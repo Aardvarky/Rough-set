@@ -8,12 +8,21 @@ class CImplArray(list):
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
-            identical = True
-            for i, (x, y) in enumerate(zip(self.getImplicantArray(), other.getImplicantArray())):
-                if not x.__eq__(y):
-                    identical = False
-                    break
-            return identical
+            if len(self.getImplicantArray()) == len(other.getImplicantArray()):
+                implicantArray = copy.deepcopy(self)
+                implicantArray1 = copy.deepcopy(other)
+
+                implicantArray.sort()
+                implicantArray1.sort()
+
+                identical = True
+                for x, y in zip(implicantArray.getImplicantArray(), implicantArray1.getImplicantArray()):
+                    if not x.__eq__(y):
+                        identical = False
+                        break
+                return identical
+            else:
+                return False
         else:
             return False
 
@@ -23,9 +32,6 @@ class CImplArray(list):
     def copyInstance(self, implicantArray):
         if isinstance(implicantArray, self.__class__):
             self.clear()
-
-            # for i in range(implicantArray.size()):
-            #     self._implicantArray.append(implicantArray[i])
 
             for i in implicantArray.getImplicantArray():
                 self._implicantArray.append(i)
