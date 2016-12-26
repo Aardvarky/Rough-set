@@ -38,6 +38,12 @@ class BasicInformSystem:
     def setSystemType(self, systemType):
         self._systemType = systemType
 
+    def getAttributes(self):
+        return self._attributes
+
+    def setAttributes(self, bits=0):
+        self._attributes = Bitset(bits)
+
     def getAttributeNumber(self):
         return self._attributeNumber
 
@@ -56,6 +62,9 @@ class BasicInformSystem:
         else:
             return ""
 
+    def getAttributeIndexes(self):
+        return self._attributeIndexes
+
     def setAttributeIndexes(self, attributeIndexes):
         self._attributeIndexes = attributeIndexes
 
@@ -68,11 +77,29 @@ class BasicInformSystem:
     def getAttributeTypes(self):
         return self._attributeTypes
 
+    def setAttributeTypes(self, attributeTypes):
+        self._attributeTypes = attributeTypes
+
+    def getAttributeCosts(self):
+        return self._attributeCosts
+
+    def setAttributeCosts(self, attributeCosts):
+        self._attributeCosts =attributeCosts
+
+    def getAttributeValues(self):
+        return self._attributeValues
+
+    def setAttributeValues(self, attributeValues):
+        self._attributeValues = attributeValues
+
     def getObjectNumber(self):
         return self._objectNumber
 
     def setObjectNumber(self, objectNumber):
         self._objectNumber = objectNumber
+
+    def getDiscernMatrix(self):
+        return self._discernMatrix
 
     def getObject(self, index):
         if type(index) == int:
@@ -80,11 +107,23 @@ class BasicInformSystem:
         else:
             raise TypeError(index)
 
+    def setObject(self, index, globalState):
+        self._objects.setObject(index, globalState)
+
+    def getObjects(self):
+        return self._objects
+
+    def setObjects(self, objects):
+        self._objects = objects
+
     def getObjectName(self, index):
         if index < self._objectNumber:
             return self._objects.getObject(index).getName()
         else:
             return ""
+
+    def setObjectName(self, index, name):
+        self._objects.getObject(index).setName(name)
 
     def getInformTable(self):
         return self._objects
@@ -109,20 +148,20 @@ class BasicInformSystem:
         ruleSet = CRuleSet()
         tempRulesSet = CRuleSet()
 
-        tempDiscMatrix = CDiscernMatrix(self._objectNumber, len(conAttr))
+        tempDiscMatrix = CDiscernMatrix(self._objectNumber, self._attributeNumber)
         for i in range(self._objectNumber):
             for j in range(self._objectNumber):
                 for k in range(len(conAttr)):
                     x = self.getObject(i).getDescriptors().get(conAttr[k])
-                    y = self.getObject(i).getDescriptors().get(conAttr[k])
+                    y = self.getObject(j).getDescriptors().get(conAttr[k])
 
                     if x == y:
                         tempDiscMatrix.getImplicant(i, j).setValue(conAttr[k])
 
-        newDiscMatrix = CDiscernMatrix(self._objectNumber, len(conAttr))
+        newDiscMatrix = CDiscernMatrix(self._objectNumber, self._attributeNumber)
         for i in range(self._objectNumber):
             for j in range(self._objectNumber):
-                if i != j:
+                if j != i:
                     firstAttr = self.getObject(i).getDescriptors().get(decAttr)
                     secondAttr = self.getObject(j).getDescriptors().get(decAttr)
 
@@ -134,7 +173,7 @@ class BasicInformSystem:
             numberOfRules = 0
             for j in range(self._objectNumber):
                 if newDiscMatrix.getImplicant(i, j).any():
-                    tempRulesSet.append(CRule())
+                    tempRulesSet.insert(numberOfRules, CRule())
 
                     for implicantIndex in range(newDiscMatrix.getImplicant(i, j).size()):
                         if newDiscMatrix.getImplicant(i, j).test(implicantIndex):
@@ -148,6 +187,7 @@ class BasicInformSystem:
             tempRulesSet.removeRules(0x00)
             for i in range(len(tempRulesSet.getRuleArray())):
                 ruleSet.append(tempRulesSet.getRule(i))
+            # ruleSet.appendRuleSet(tempRulesSet)
 
         return ruleSet
 

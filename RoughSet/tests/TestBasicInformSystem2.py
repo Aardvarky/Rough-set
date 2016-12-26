@@ -1,11 +1,8 @@
-from Bitset import Bitset
-from CDiscernMatrix import CDiscernMatrix
 from CInformTable import CInformTable
 from HashableDict import HashableDict
-from CRuleSet import CRuleSet
-from CRule import CRule
 from CGlobalState import CGlobalState
 from BasicInformSystem import BasicInformSystem
+from BasicInformSystem2 import BasicInformSystem2
 
 print("--------------first hashable dict-------------------------")
 
@@ -128,7 +125,7 @@ print(firstCInformTable.getInformationTable())
 
 print("--------------Creating first Basic inform system--------------")
 
-firstBasicInformSystem = BasicInformSystem()
+firstBasicInformSystem = BasicInformSystem2(5)
 
 print("--------------set and get name--------------------------------")
 
@@ -203,34 +200,20 @@ print("--------------get object CDiscern matrix----------------------")
 
 print(firstBasicInformSystem.getDiscernMatrix())
 
-print("--------------comp discern matrix-----------------------------")
+print("--------------compute reducts---------------------------------")
 
-firstBasicInformSystem.compDiscernMatrix()
-firstBasicInformSystem.getDiscernMatrix().printTab()
+firstBasicInformSystem.computeReducts()
 
-print("--------------Creating rule set-------------------------------")
+for i in firstBasicInformSystem.getReducts().getReducts():
+    print("Reduct name : ", i.getName(),
+          " Reduct choise : ", i.getChoice(),
+          " Reduct attributes : ", i.getAttributes().getBitsetList())
 
-firstCRuleSet = CRuleSet()
+print("--------------compute reducts using indexes-------------------")
 
-print("--------------comp nondet rules-------------------------------")
+firstBasicInformSystem.computeReductsUsingAttributes(1, 3)
 
-firstCRuleSet = firstBasicInformSystem.compNondetRules([1, 2, 3, 4], 5)
-
-for i in firstCRuleSet.getRuleArray():
-    print("Antecedent : ", i.getAntecedent(),
-          " Consequent : ", i.getConsequent(),
-          " Support : ", i.getSupport(),
-          " Strength : ", i.getStrength(),
-          " Coverage : ", i.getCoverage())
-
-print("--------------comp Depend Degree For Attribute----------------")
-
-compDependDegreeForAttribute = firstBasicInformSystem.compDependDegreeForAttribute([1, 2, 3, 4], 5)
-
-print(compDependDegreeForAttribute)
-
-print("--------------comp Depend Degree For Attributes---------------")
-
-compDependDegreeForAttributes = firstBasicInformSystem.compDependDegreeForAttributes([1, 2, 3], [4, 5])
-
-print(compDependDegreeForAttributes)
+for i in firstBasicInformSystem.getReducts().getReducts():
+    print("Reduct name : ", i.getName(),
+          " Reduct choise : ", i.getChoice(),
+          " Reduct attributes : ", i.getAttributes().getBitsetList())

@@ -96,10 +96,21 @@ for i in fourth_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
 print("---------------conj2disj---------------------")
+print("---------------first conj2disj---------------")
+
+for i in first_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
+print("---------------------------------------------")
 
 fifth_implicant_array = first_implicant_array.conj2disj()
 
 for i in fifth_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
+print("---------------second conj2disj--------------")
+
+for i in second_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
 print("---------------------------------------------")
@@ -109,11 +120,21 @@ eighth_implicant_array = second_implicant_array.conj2disj()
 for i in eighth_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
+print("---------------third conj2disj---------------")
+
+for i in third_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
 print("---------------------------------------------")
 
 ninth_implicant_array = third_implicant_array.conj2disj()
 
 for i in ninth_implicant_array.getImplicantArray():
+    print(i.getBitsetList())
+
+print("---------------fourth conj2disj--------------")
+
+for i in fourth_implicant_array.getImplicantArray():
     print(i.getBitsetList())
 
 print("---------------------------------------------")
@@ -122,5 +143,3 @@ tenth_implicant_array = fourth_implicant_array.conj2disj()
 
 for i in tenth_implicant_array.getImplicantArray():
     print(i.getBitsetList())
-
-print("---------------------------------------------")

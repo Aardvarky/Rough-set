@@ -3,8 +3,6 @@ from CInformTable import CInformTable
 from HashableDict import HashableDict
 
 print("--------------first hashable dict-------------------------")
-print("--------------flip method---------------------------------")
-
 
 fistHashableDict = HashableDict()
 fistHashableDict.add(1, 1.0)

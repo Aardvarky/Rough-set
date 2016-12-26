@@ -36,6 +36,10 @@ class CReductSet:
         else:
             raise TypeError(implArr)
 
+    def removeAll(self):
+        for i in self.__reductArray:
+            del i
+
     def saveXML(self, File, ISName, NameAttr):
         pass
 

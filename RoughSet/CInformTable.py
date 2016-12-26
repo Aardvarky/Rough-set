@@ -54,6 +54,9 @@ class CInformTable(list):
     def getObject(self, index):
         return self._informationTable[index]
 
+    def setObject(self, index, globalState):
+        self._informationTable.insert(index, globalState)
+
     def getInformationTable(self):
         return self._informationTable
 

@@ -27,6 +27,12 @@ class CRuleSet(list):
         else:
             raise TypeError(ruleSet)
 
+    def insert(self, index, rule):
+        if isinstance(rule, CRule):
+            self.__ruleArray.insert(index, rule)
+        else:
+            raise TypeError(rule)
+
     def getRule(self, index):
         return self.__ruleArray[index]
 
